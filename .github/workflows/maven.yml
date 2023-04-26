@@ -33,7 +33,7 @@ jobs:
         run: docker-compose -f "deployment/docker-compose.yaml" up -d --build
 
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn clean install
 
       - name: Stop containers
         if: always()

@@ -29,7 +29,11 @@ public class RecipeController_getRecipeIT extends ITSetup {
 
     assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
     assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(expectedResponse);
+  }
 
+  @Test
+  public void failingTest() {
+    assertThat(1).isEqualTo(2);
   }
 
 }
