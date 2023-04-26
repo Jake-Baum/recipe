@@ -10,9 +10,12 @@ name: Build and Run Tests
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
+
+permissions:
+  checks: write
 
 jobs:
   build:
