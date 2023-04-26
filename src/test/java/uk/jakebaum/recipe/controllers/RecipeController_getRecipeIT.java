@@ -9,6 +9,8 @@ import uk.jakebaum.recipe.controllers.dto.RecipeDto;
 import uk.jakebaum.recipe.model.Recipe;
 import uk.jakebaum.recipe.repositories.RecipeRepository;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RecipeController_getRecipeIT extends ITSetup {
@@ -18,7 +20,7 @@ public class RecipeController_getRecipeIT extends ITSetup {
 
   @BeforeEach
   public void setUp() {
-    recipeRepository.save(new Recipe("1", "Spaghetti Bolognese"));
+    recipeRepository.save(new Recipe("1", "Spaghetti Bolognese", List.of("Spaghetti", "Tomato", "Beef Mince")));
   }
 
   @Test
@@ -26,7 +28,8 @@ public class RecipeController_getRecipeIT extends ITSetup {
     ResponseEntity<RecipeDto> response =
             restTemplate.getForEntity(RecipeController.BASE_ENDPOINT, RecipeDto.class, "1");
 
-    RecipeDto expectedResponse = new RecipeDto("1", "Spaghetti Bolognese");
+    RecipeDto expectedResponse =
+            new RecipeDto("1", "Spaghetti Bolognese", List.of("Spaghetti", "Tomato", "Beef Mince"));
 
     assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
     assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(expectedResponse);

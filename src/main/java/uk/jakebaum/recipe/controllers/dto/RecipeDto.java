@@ -1,3 +1,5 @@
 package uk.jakebaum.recipe.controllers.dto;
 
-public record RecipeDto(String id, String title) {}
+import java.util.List;
+
+public record RecipeDto(String id, String title, List<String> ingredients) {}
