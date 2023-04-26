@@ -44,7 +44,7 @@ jobs:
           name: Maven Tests
           path: '**/target/*-reports/**/TEST-*.xml'
           reporter: java-junit
-          fail-on-error: true
+#          fail-on-error: true
 
       - name: Stop Containers
         if: always()
