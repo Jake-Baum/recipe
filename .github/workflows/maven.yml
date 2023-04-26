@@ -18,7 +18,7 @@ permissions:
   checks: write
 
 jobs:
-  build:
+  Build:
 
     runs-on: ubuntu-latest
 
@@ -41,7 +41,7 @@ jobs:
       - name: Report Test Results
         uses: dorny/test-reporter@v1
         with:
-          name: Maven Tests
+          name: Backend Tests
           path: '**/target/*-reports/**/TEST-*.xml'
           reporter: java-junit
 
