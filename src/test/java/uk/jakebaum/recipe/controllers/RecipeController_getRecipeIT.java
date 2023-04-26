@@ -23,17 +23,13 @@ public class RecipeController_getRecipeIT extends ITSetup {
 
   @Test
   public void getRecipe_success() {
-    ResponseEntity<RecipeDto> response = restTemplate.getForEntity(RecipeController.BASE_ENDPOINT, RecipeDto.class);
+    ResponseEntity<RecipeDto> response =
+            restTemplate.getForEntity(RecipeController.BASE_ENDPOINT, RecipeDto.class, "1");
 
     RecipeDto expectedResponse = new RecipeDto("1", "Spaghetti Bolognese");
 
     assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
     assertThat(response.getBody()).usingRecursiveComparison().isEqualTo(expectedResponse);
-  }
-
-  @Test
-  public void failingTest() {
-    assertThat(1).isEqualTo(2);
   }
 
 }
