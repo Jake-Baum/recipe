@@ -26,15 +26,23 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'temurin'
+          distribution: 'adopt'
           cache: maven
 
       - name: Start Test Containers
         run: docker-compose -f "deployment/docker-compose.yaml" up -d --build
 
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn clean install --batch-mode --update-snapshots
 
-      - name: Stop containers
+      - name: Report Test Results
+        uses: dorny/test-reporter@v1
+        with:
+          name: Maven Tests
+          path: '**/target/*-reports/**/TEST-*.xml'
+          reporter: java-junit
+          fail-on-error: true
+
+      - name: Stop Containers
         if: always()
         run: docker-compose -f "deployment/docker-compose.yaml" down
