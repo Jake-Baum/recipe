@@ -1,3 +1,3 @@
 package uk.jakebaum.recipe.controllers.dto;
 
-public record RecipeDto(long id, String title) {}
+public record RecipeDto(String id, String title) {}

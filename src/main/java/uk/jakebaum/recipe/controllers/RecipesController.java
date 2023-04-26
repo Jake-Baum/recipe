@@ -8,26 +8,27 @@ import uk.jakebaum.recipe.model.Recipe;
 import uk.jakebaum.recipe.services.RecipeService;
 
 @RestController
-@RequestMapping(value = RecipeController.BASE_ENDPOINT)
-public class RecipeController {
+@RequestMapping(value = RecipesController.BASE_ENDPOINT)
+public class RecipesController {
 
-  public static final String BASE_ENDPOINT = "/recipe/{recipeId}";
+  public static final String BASE_ENDPOINT = "/recipe";
 
   private final RecipeService recipeService;
 
   private final RecipeDtoConverter recipeDtoConverter;
 
   @Autowired
-  public RecipeController(RecipeService recipeService, RecipeDtoConverter recipeDtoConverter) {
+  public RecipesController(RecipeService recipeService, RecipeDtoConverter recipeDtoConverter) {
     this.recipeService = recipeService;
     this.recipeDtoConverter = recipeDtoConverter;
   }
 
-  @GetMapping
-  public RecipeDto getRecipe(@PathVariable("recipeId") String recipeId) {
-    Recipe recipe = recipeService.getRecipeById(recipeId).orElseThrow(IllegalArgumentException::new);
+  @PostMapping
+  public RecipeDto createRecipe(@RequestBody RecipeDto recipeDto) {
+    Recipe recipe = recipeDtoConverter.toEntity(recipeDto);
 
-    return recipeDtoConverter.toDto(recipe);
+    Recipe persistedRecipe = recipeService.createRecipe(recipe);
+    return recipeDtoConverter.toDto(persistedRecipe);
   }
 
 }
