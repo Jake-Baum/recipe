@@ -1,5 +1,6 @@
 package uk.jakebaum.recipe.model;
 
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,6 +12,7 @@ public class Recipe {
   @Id
   private String id;
 
+  @NotBlank
   private String title;
 
   private List<String> ingredients;
