@@ -6,7 +6,7 @@ on:
 #    tags: ["release/**"]
 
 jobs:
-  Build and Push Docker Image:
+  build-and-push-docker-image:
 
     runs-on: ubuntu-latest
 
