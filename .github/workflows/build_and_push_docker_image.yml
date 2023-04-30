@@ -39,7 +39,7 @@ jobs:
           docker build "deployment/docker/backend" --build-arg VERSION=development-SNAPSHOT -t europe-west2-docker.pkg.dev/recipy-382818/docker-repository:$GITHUB_SHA
 
       - run: |
-          gcloud auth configure-docker -q
+          gcloud auth configure-docker europe-west2-docker.pkg.dev
 
       - name: Push Image
         run: |-
