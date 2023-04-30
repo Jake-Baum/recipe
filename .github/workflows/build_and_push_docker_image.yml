@@ -11,11 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
         with:
-          service_account_key: ${{ secrets.GCR_DEVOPS_SERVICE_ACCOUNT_KEY }}
-          project_id: recipy-382818
-          export_default_credentials: true
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
 
       - name: Image
         run: |-
