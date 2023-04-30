@@ -1,14 +1,17 @@
 name: Build and Push Docker Image
 
 on:
-  push:
-    branches: ["main"]
-#    tags: ["release/**"]
+  workflow_run:
+    workflows: [Build and Run Tests]
+    types:
+      - completed
 
 jobs:
   build-and-push-docker-image:
 
     runs-on: ubuntu-latest
+
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - id: 'auth'
