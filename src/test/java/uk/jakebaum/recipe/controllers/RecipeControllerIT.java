@@ -70,7 +70,7 @@ public class RecipeControllerIT extends ITSetup {
               new Recipe(updatedRecipe.id(), updatedRecipe.title(), updatedRecipe.ingredients());
 
       assertThat(persistedRecipe.isPresent()).isTrue();
-      assertThat(persistedRecipe.get()).isEqualTo(expectedPersistedRecipe);
+      assertThat(persistedRecipe.get()).usingRecursiveComparison().isEqualTo(expectedPersistedRecipe);
     }
 
   }
