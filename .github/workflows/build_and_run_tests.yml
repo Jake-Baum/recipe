@@ -33,7 +33,7 @@ jobs:
           cache: maven
 
       - name: Start Test Containers
-        run: docker-compose -f "deployment/docker-compose.yaml" up -d --build
+        run: docker-compose -f "deployment/docker/docker-compose.yaml" up -d --build
 
       - name: Build with Maven
         run: mvn clean install --batch-mode --update-snapshots
@@ -47,4 +47,4 @@ jobs:
 
       - name: Stop Containers
         if: always()
-        run: docker-compose -f "deployment/docker-compose.yaml" down
+        run: docker-compose -f "deployment/docker/docker-compose.yaml" down
