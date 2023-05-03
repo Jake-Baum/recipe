@@ -6,3 +6,16 @@ spring:
   data:
     mongodb:
       uri: mongodb://admin:P4ssw0rd@localhost:27017/recipe?authSource=admin
+
+log:
+  requests: true
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          filter:
+            CommonsRequestLoggingFilter: DEBUG
+          client:
+            RestTemplate: DEBUG
