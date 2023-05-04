@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://admin:P4ssw0rd@localhost:27017/recipe?authSource=admin
