@@ -1,8 +1,3 @@
-variable "project_id" {
-}
-
-variable "region" {
-}
 
 # VPC
 resource "google_compute_network" "vpc" {
