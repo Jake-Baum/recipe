@@ -36,11 +36,11 @@ jobs:
 
       - name: Build Image
         run: |-
-          docker build "deployment/docker/backend" --build-arg VERSION=development-SNAPSHOT -t europe-west2-docker.pkg.dev/recipy-382818/docker-repository/recipe-backend:$GITHUB_SHA
+          docker build "deployment/docker/backend" --build-arg VERSION=development-SNAPSHOT -t europe-west2-docker.pkg.dev/recipe-1234567/docker-repository/recipe-backend:$GITHUB_SHA
 
       - run: |
           gcloud auth configure-docker europe-west2-docker.pkg.dev
 
       - name: Push Image
         run: |-
-          docker push europe-west2-docker.pkg.dev/recipy-382818/docker-repository/recipe-backend:$GITHUB_SHA
+          docker push europe-west2-docker.pkg.dev/recipe-1234567/docker-repository/recipe-backend:$GITHUB_SHA
